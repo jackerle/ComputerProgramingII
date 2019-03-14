@@ -5,12 +5,10 @@
 	LD	R6,VALUES	; set counter
 ;------------init values for loop--------------
 	LDR	R2,R1,#0	;load value from memory to R2 form 
-address R1
 	ADD	R1,R1,#1	;address R1++
 	ADD	R5,R5,R2	;R5+=R2
 	ADD	R6,R6,#-1	;counter R6--
 	BRp	#-5		;check condition if nzp = p back to LDR 
-before
 ;--------------End loop-----------------
 VALUES	.FILL	#10
 	.END
