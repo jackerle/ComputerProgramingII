@@ -49,6 +49,14 @@ class OUTER extends member{
         this.name = name;
     }
 }
+class AUTHORITY extends member{
+
+    public AUTHORITY(String name) {
+        this.name = name;
+        r= new Rent15Day();
+    }
+    
+}   
 public class JavaApplication74 {
 
     public static void main(String[] args) {
@@ -58,6 +66,10 @@ public class JavaApplication74 {
         t1.tellMe();
         STUDENT s1 = new STUDENT("อาติ่ม");
         s1.tellMe();
+        OUTER o1 = new OUTER("อากู๋");
+        o1.tellMe();
+        AUTHORITY a1 = new AUTHORITY("วีรเดช");
+        a1.tellMe();
     }
     
 }
