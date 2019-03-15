@@ -3,22 +3,22 @@ interface rank {
 }
 class Rent7Day implements rank{
     public String report(){
-        return "ยืมได้ 7 วัน ใช้ได้ตลอด";
+        return "เป็นนักเรียน ยืมได้ 7 วัน ใช้ได้ตลอด";
     }    
 }
 class Rent7DayTerm implements rank{
     public String report(){
-        return "ยืมได้ 7 วัน หรือ ตลอดเทอมก็ได้";
+        return "เป็นครู ยืมได้ 7 วัน หรือ ตลอดเทอมก็ได้";
     }
 }
 class  Rent15Day implements rank{
     public String report(){
-        return "ยืมได้ 15 วัน";
+        return "เป็นพนักงาน ยืมได้ 15 วัน";
     }
 }
 class CantRent implements rank{
     public String report(){
-        return "ยืมไม่ได้ เข้าใช้เฉพาะช่วงสอบ";
+        return "เป็นคนนอก ยืมไม่ได้ เข้าใช้เฉพาะช่วงสอบ";
     }
 }
 abstract class member {
@@ -56,19 +56,19 @@ class AUTHORITY extends member{
         r= new Rent15Day();
     }
     
-}   
+}
 public class JavaApplication74 {
 
     public static void main(String[] args) {
-        TEACHER t1  = new TEACHER("วิชุดา");
+        member t1  = new TEACHER("วิชุดา");
         t1.tellMe();
         t1.setRank(new CantRent());
         t1.tellMe();
-        STUDENT s1 = new STUDENT("อาติ่ม");
+        member s1 = new STUDENT("อาติ่ม");
         s1.tellMe();
-        OUTER o1 = new OUTER("อากู๋");
+        member o1 = new OUTER("อากู๋");
         o1.tellMe();
-        AUTHORITY a1 = new AUTHORITY("วีรเดช");
+        member a1 = new AUTHORITY("วีรเดช");
         a1.tellMe();
     }
     
