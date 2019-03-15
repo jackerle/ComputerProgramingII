@@ -43,6 +43,12 @@ class STUDENT extends member{
         this.name = name;
     }
 }
+class OUTER extends member{
+    OUTER(String name){
+        r = new CantRent();
+        this.name = name;
+    }
+}
 public class JavaApplication74 {
 
     public static void main(String[] args) {
