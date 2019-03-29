@@ -10,7 +10,7 @@
 
 
 
-4. select  orderdetail.prodno as name,sum(orderdetail.orderqty)  as total from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.prodno;
+4.  select date_format(ordertbl.orderdate, '%M') as moth , orderdetail.prodno as name,sum(orderdetail.orderqty)  as total from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.prodno, ordertbl.orderdate;
 
 
 
