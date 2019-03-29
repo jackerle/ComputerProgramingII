@@ -1,0 +1,20 @@
+ select  date_format(orderDate, '%M %Y') from ordertbl where (date_format(orderDate, '%M %Y')='October 2016');
+ select  * from ordertbl where (date_format(orderDate, '%M %Y')='October 2016');
+
+
+2.select  date_format(ordertbl.orderdate, '%M') as month, sum(prodtbl.prodprice) as total from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY date_format(ordertbl.orderdate, '%M');
+
+
+
+3. select  date_format(ordertbl.orderdate, '%M') as month,avg(prodtbl.prodprice) as average from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY date_format(ordertbl.orderdate, '%M');
+
+
+
+4. select  orderdetail.prodno as name,sum(orderdetail.orderqty)  as total from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.prodno;
+
+
+
+
+
+5. select  sum(prodtbl.prodprice) as prodno from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.orderno;
+
