@@ -61,14 +61,14 @@ class DB{
     ArrayList<User> users = new ArrayList<>();
     DB(){
         //test
-        User n = new User()
+       /* User n = new User()
             .userId("jackerle")
             .email("zeustololisis@gmail.com")
             .password("19114198")
             .address("Hello ")
             .money(1000000)
             .build();
-        users.add(n);
+        users.add(n);*/
     }
     public void addUser(User u){
         users.add(u);
