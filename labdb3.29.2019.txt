@@ -24,3 +24,14 @@ from ordertbl,orderdetail,prodtbl
 where ordertbl.orderno = orderdetail.orderno
 and orderdetail.prodno = prodtbl.prodno
 group by orderdetail.orderno
+
+
+1 new) select avg(a.suma) 
+from (
+select orderdetail.orderno,sum(prodtbl.prodprice)*orderdetail.orderqty as suma
+from ordertbl,orderdetail,prodtbl
+where ordertbl.orderno = orderdetail.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by orderdetail.orderno
+) a
+
