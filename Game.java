@@ -42,6 +42,9 @@ class User{
     public String getID(){
         return this.userId;
     }
+    public String getPass(){
+        return this.password;
+    }
     
 }
 class DB{
@@ -49,6 +52,27 @@ class DB{
     public void addUser(User u){
         users.add(u);
         System.out.println("registered success!\nYour id is:"+u.getID());
+    }
+    public User authenricate(String id,String pass){
+        if(!users.isEmpty()){
+        for(int i=0;i<users.size();i++){
+            if(users.get(i).getID().equals(id)){
+                  System.out.println(users.get(i).getID());
+                  return users.get(i);
+                /*if(users.get(i).getPass().equals(pass)){
+                    System.out.println("Login Succes! :"+users.get(i).getID());
+                    return users.get(i);
+                }
+                else{
+                    System.out.println("password not match!");
+                    break;
+                }*/
+            }
+         
+        }
+        }
+        System.out.println("ID doesn't exist!");
+        return null;
     }
     
 }
@@ -65,10 +89,18 @@ class Server{
             .userId("jackerle")
             .money(10000)
             .build();
+         User m = new User()
+            .email("zeustololisis@gmail.com")
+            .address("nakhonprathom")
+            .password("19114198")
+            .userId("darkness")
+            .money(10000)
+            .build();
          db.addUser(n);
+         db.addUser(m);
     }
     public void login(){
-        
+        db.authenricate("jackerle","19114198");
     }
     public void seeScore(){
         
@@ -84,6 +116,7 @@ public class Game {
         Server serv1 = new Server();
         //----------------Register-------------------------------------------
         serv1.register();
+        serv1.login();
     
         
         //--------------------------------------------------------------------
