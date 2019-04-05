@@ -73,6 +73,9 @@ class Server{
     public void seeScore(){
         
     }
+    public void play(){
+        
+    }
 }
 public class Game {
 
