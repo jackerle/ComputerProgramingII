@@ -19,19 +19,46 @@
 5. select  sum(prodtbl.prodprice) as prodno from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.orderno;
 
 ----------------------------------------------------------------------------------
-select orderdetail.orderno,avg(prodtbl.prodprice)*orderdetail.orderqty 
-from ordertbl,orderdetail,prodtbl
-where ordertbl.orderno = orderdetail.orderno
-and orderdetail.prodno = prodtbl.prodno
-group by orderdetail.orderno
-
-
-1 new) select avg(a.suma) 
+1 unique. select avg(a.suma) 
 from (
-select orderdetail.orderno,sum(prodtbl.prodprice)*orderdetail.orderqty as suma
+select orderdetail.orderno,sum((prodtbl.prodprice)*orderdetail.orderqty) as suma
 from ordertbl,orderdetail,prodtbl
 where ordertbl.orderno = orderdetail.orderno
 and orderdetail.prodno = prodtbl.prodno
 group by orderdetail.orderno
 ) a
+
+
+
+1 common. select orderdetail.orderno,avg((prodtbl.prodprice)*orderdetail.orderqty) as suma
+from ordertbl,orderdetail,prodtbl
+where ordertbl.orderno = orderdetail.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by orderdetail.orderno
+
+
+
+2.select a.cust,a.suma,a.avga
+from (
+select orderdetail.orderno,sum((prodtbl.prodprice)*orderdetail.orderqty) as suma,avg((prodtbl.prodprice)*orderdetail.orderqty) as avga,ordertbl.custno as cust
+from ordertbl,orderdetail,prodtbl,custtbl
+where ordertbl.orderno = orderdetail.orderno
+and orderdetail.prodno = prodtbl.prodno
+and ordertbl.custno = custtbl.custno
+group by orderdetail.orderno
+) a
+where a.suma > a.avga
+
+
+
+
+
+
+
+
+
+
+
+
+
 
