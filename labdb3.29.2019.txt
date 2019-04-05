@@ -49,6 +49,28 @@ group by orderdetail.orderno
 ) a
 where a.suma > a.avga
 
+3. select date_format(ordertbl.orderdate,'%M') as moth,sum(prodtbl.prodprice*orderdetail.orderqty) as sum
+from orderdetail,prodtbl,ordertbl
+where orderdetail.orderno = ordertbl.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by date_format(ordertbl.orderdate,'%M')
+
+
+4. select date_format(ordertbl.orderdate,'%M') as moth,avg(prodtbl.prodprice*orderdetail.orderqty) as sum
+from orderdetail,prodtbl,ordertbl
+where orderdetail.orderno = ordertbl.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by date_format(ordertbl.orderdate,'%M')
+
+5.
+select sum(a.sum)
+from (select date_format(ordertbl.orderdate,'%M') as moth,avg(prodtbl.prodprice*orderdetail.orderqty) as sum
+from orderdetail,prodtbl,ordertbl
+where orderdetail.orderno = ordertbl.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by date_format(ordertbl.orderdate,'%M')) a
+where a.moth='July' 
+or a.moth='August';
 
 
 
