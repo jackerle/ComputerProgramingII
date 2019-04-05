@@ -18,3 +18,9 @@
 
 5. select  sum(prodtbl.prodprice) as prodno from orderdetail, prodtbl, ordertbl where orderdetail.prodno = prodtbl.prodno and orderdetail.orderno = ordertbl.orderno GROUP BY orderdetail.orderno;
 
+----------------------------------------------------------------------------------
+select orderdetail.orderno,avg(prodtbl.prodprice)*orderdetail.orderqty 
+from ordertbl,orderdetail,prodtbl
+where ordertbl.orderno = orderdetail.orderno
+and orderdetail.prodno = prodtbl.prodno
+group by orderdetail.orderno
