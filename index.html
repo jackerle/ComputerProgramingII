@@ -1,0 +1,48 @@
+<!doctype html>
+<head>
+    <title>sum</title>
+</head>
+<body>
+    <div align="center" style="border-style: dotted;width:500px;height:200px;margin:auto;
+">
+        <h3>This page says</h3>
+        <p>ป้อนตัวเลข หากต้องการหยุดให้ป้อนเลข 9</p>
+        <p id="log"></p>
+        <input id="inp"><br/><br/>
+        <button id="butt">ตกลง</button>
+    </div>
+</body>
+<script>
+    var butt = document.getElementById('butt')
+    var _inp = document.getElementById('inp')
+    var inp
+    var sum=0
+    butt.addEventListener("click",()=>{
+        if(_inp.value!==""&&parseInt(_inp.value)!=9){
+           inp = parseInt(_inp.value)
+           sum+=inp
+           _inp.value = ''
+            document.getElementById('log').innerHTML = 'เพิ่มตัวเลข :'+inp
+        }
+        else if(_inp.value!==""&&parseInt(_inp.value)===9){
+            sum+=parseInt(_inp.value)
+            _inp.value = ''
+            alert('ผลลัพธ์คือ '+sum)
+            sum = 0
+            document.getElementById('log').innerHTML = ''
+
+        }
+        else{
+            alert('ใส่ตัวเลขด้วย')
+        }
+    })
+    _inp.addEventListener("keyup",(event)=>{
+        if(event.keyCode===13){
+            event.preventDefault();
+            document.getElementById('butt').click();
+        }
+    })
+</script>
+
+
+</html>
