@@ -6,17 +6,19 @@ import java.nio.channels.*;
 
 public class zClient{
 
-    static String path = "f:/code/OSClass/Server/file_test.mkv";
+    static String path = "f:/code/OSClass/Server/1.mkv";
     static long size =0;
 
     public static void main(String[] args)throws IOException{
         
-        InetSocketAddress serverAddress = new InetSocketAddress("localhost", 9889);
+        InetSocketAddress serverAddress = new InetSocketAddress("178.128.54.43", 9889);
         FileChannel fileChannel  = new FileInputStream(path).getChannel();
         size = fileChannel.size();
 
         //connect to server
         SocketChannel socketChannel = SocketChannel.open(serverAddress);
+
+
 
 
         //prepare for msg
@@ -26,7 +28,12 @@ public class zClient{
         socketChannel.write(buffer);
         System.out.println("Send size to server :"+size);
         buffer.clear();
+        
 
+        /*File temp = File.createTempFile("TempFileName", ".tmp");
+        temp.deleteOnExit();
+        FileChannel fileChannel = new FileOutputStream(temp).getChannel();
+        fileChannel.transferFrom(src,0,src.size());*/
 
         //sendfile
         long total = 0;
@@ -42,6 +49,9 @@ public class zClient{
         socketChannel.close();
         fileChannel.close();
     }
+
+
+
     public static void progressBar(long _now, long max) {
         //System.out.println("Now loading progress...");
         long now = _now;
