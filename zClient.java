@@ -11,12 +11,23 @@ public class zClient{
 
     public static void main(String[] args)throws IOException{
         
-        InetSocketAddress serverAddress = new InetSocketAddress("178.128.54.43", 9889);
+        InetSocketAddress serverAddress = new InetSocketAddress("localhost", 9889);
         FileChannel fileChannel  = new FileInputStream(path).getChannel();
         size = fileChannel.size();
 
         //connect to server
         SocketChannel socketChannel = SocketChannel.open(serverAddress);
+        System.out.println("----------------------------------------------");
+        System.out.println("");
+        System.out.println("=========  =======     ==  ===   ==");
+        System.out.println("      ==   ==    ==    =====   =======");
+        System.out.println("    ==     =======     ===    ===   ===");
+        System.out.println("   ==      ==          ===    ===   ===");
+        System.out.println(" ==        ===         ==     ===  ===");
+        System.out.println("========   ========    ==       ====");
+        System.out.println("----------------------------------------------");
+        System.out.println();
+        
 
 
 
@@ -26,7 +37,7 @@ public class zClient{
         buffer.asLongBuffer().put(size);
         //buffer.flip();
         socketChannel.write(buffer);
-        System.out.println("Send size to server :"+size);
+        System.out.println("Send size to server :"+size+" byteBuffer");
         buffer.clear();
         
 
@@ -36,14 +47,23 @@ public class zClient{
         fileChannel.transferFrom(src,0,src.size());*/
 
         //sendfile
+        Long start = System.currentTimeMillis();
+        System.out.println("_____________________________________________");
+        System.out.println("Start time mill = "+start);
+        System.out.println("---------------------------------------------");
         long total = 0;
+        long time =0;
         while(total < size){
             long tranferToCount  = fileChannel.transferTo(total, size-total,socketChannel);
             if(tranferToCount<=0)break;
             total+=tranferToCount;
-            progressBar(total, size);
+            time = progressBar(total, size,start);
         }
-        System.out.println("finish!");
+        System.out.println("finish!-------");
+        System.out.println("_____________________________________________");
+        Long minute = time/60;
+        Long secound = time-minute*60;
+        System.out.println("Time for this work is:"+ minute+" minute "+secound+" secound");
 
        // fileChannel.transferTo(0,fileChannel.size(), socketChannel);
         socketChannel.close();
@@ -52,16 +72,19 @@ public class zClient{
 
 
 
-    public static void progressBar(long _now, long max) {
+    public static long progressBar(long _now, long max,long start) {
         //System.out.println("Now loading progress...");
         long now = _now;
         long progress = (now * 100) / max;
-        String str = progress+"% ";
+        long time = (System.currentTimeMillis()/1000)-start/1000;
+        String str = progress+"% :"+Long.toString(time)+"sec";
         //System.out.print(progress + "% :");
         for (int i = 0; i < progress; i++) {
+            if(i%3==0)
             str+="|";
         }
         System.out.print(str+ "\r");
        // System.out.print(" \r now loading : "+now+"/"+max+" Byte| \r");
+       return time;
     }
 }

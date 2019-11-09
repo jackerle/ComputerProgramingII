@@ -38,11 +38,17 @@ class RequestHandlerThread extends Thread{
     SocketChannel socketChannel = null;
     ByteBuffer buffer = null;
     String path = "";
+    
+    //-----Constructure for thread class--------------------//
     public RequestHandlerThread(SocketChannel socketChannel,ByteBuffer buffer,String path){
         this.socketChannel = socketChannel;
         this.buffer = buffer;
         this.path = path;
     }
+
+
+
+    //---Todo-----------------//
     public void run(){
         try{
         //send size to client
@@ -75,7 +81,9 @@ class RequestHandlerThread extends Thread{
             System.out.println(e.getMessage());
         }
     }
-        public void progressBar(long _now, long max) {
+
+        //--Progress bar method-------------------//
+    public void progressBar(long _now, long max) {
         //System.out.println("Now loading progress...");
         long now = _now;
         long progress = (now * 100) / max;
